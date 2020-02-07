@@ -1,0 +1,27 @@
+{
+  "name": "umi-code-cli",
+  "version": "1.0.0",
+  "description": "umi coding helper cli",
+  "main": "index.js",
+  "bin": {
+      "zumi": "scripts/creator.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuanshuoye/umi-code-cli.git"
+  },
+  "keywords": [
+    "umi",
+    "dva",
+    "react"
+  ],
+  "author": "ares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chuanshuoye/umi-code-cli/issues"
+  },
+  "homepage": "https://github.com/chuanshuoye/umi-code-cli#readme"
+}
