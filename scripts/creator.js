@@ -4,7 +4,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 // 创建umi标准版page
-const pageCreator = require('./tools/umi/pageIndex');
+const pageCreator = require('./tools/umi');
 // 创建标准Component
 const ComponentCreator = require('./tools/components');
 // 创建dva模块

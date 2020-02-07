@@ -1,13 +1,14 @@
 {
   "name": "umi-code-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "umi coding helper cli",
   "main": "index.js",
   "bin": {
-      "zumi": "scripts/creator.js"
+    "zumi": "scripts/creator.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create": "node scripts/creator.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/chuanshuoye/umi-code-cli/issues"
   },
-  "homepage": "https://github.com/chuanshuoye/umi-code-cli#readme"
+  "homepage": "https://github.com/chuanshuoye/umi-code-cli#readme",
+  "dependencies": {
+    "inquirer": "^7.0.4",
+    "shelljs": "^0.8.3"
+  }
 }
