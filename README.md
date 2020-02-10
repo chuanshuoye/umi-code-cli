@@ -14,7 +14,7 @@
 - `zumi`：默认指令，根据提示进行初始化项目模块。
 
 ```bash
-e:\WORK\xmancloudbaseline>zumi
+e:\WORK\demo>zumi
 ? 请选择需要创建的模板类型: (Use arrow keys)
 > Umi（umi标准page模板）
   Dva（umi+dva标准模板）
