@@ -16,6 +16,7 @@ module.exports = [
     'DatePicker',
     'Radio',
     'Switch',
+    'Tabs',
     'Upload',
     new inquirer.Separator('---表格---'), // 添加分隔符
     'Table',

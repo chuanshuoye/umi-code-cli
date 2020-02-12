@@ -1,16 +1,16 @@
 const path = require('path');
-const fs = require('fs');
 const inquirer = require('inquirer');
 const shelljs = require('shelljs');
 const antdList = require('../antdList');
 const util = require('../util');
 
-// 项目当前Page目录
+// 项目当前Page根目录
 const ROOT_PAGE_DIR = `${util.assetDir(['src/pages'])}`;
+// 子Page目录
 const UMI_PAGE_REGEXP = `${util.assetDir(['src/pages/**/pages/'])}`;
 
 const UMI_TEMPLATE_DIR = `${path.resolve(__dirname, '../../tpls/umi')}`;
-const UMI_ANTD_PAGE_FILE = 'pages/pageOne/index.js';
+const UMI_ANTD_PAGE_FILE = 'pages/index.js';
 
 // 生成的模板目标目录
 let targetDir = '';
@@ -40,6 +40,7 @@ function PromptTargetDir() {
         message: '请选择Page创建子目录路径:',
         name: 'pagechilddir',
         choices: pageDirSelections,
+        pageSize: 20,
         when: answers => answers.isPageChild
     },{
         type: 'input',
@@ -71,6 +72,7 @@ function PromptAntd() {
         type: 'checkbox',
         message: '请选择默认Page需要的Antd组件列表:',
         name: 'antdSelections',
+        pageSize: 20,
         choices: antdList
     }];
 

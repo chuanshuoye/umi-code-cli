@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const inquirer = require('inquirer');
 const shelljs = require('shelljs');
 const antdList = require('../antdList');
@@ -33,6 +32,7 @@ function PromptTargetDir() {
         type: 'rawlist',
         message: '请选择Component创建目录路径:',
         name: 'componentdir',
+        pageSize: 25,
         choices: componentDirSelections
     },{
         type: 'input',
@@ -50,8 +50,6 @@ function PromptTargetDir() {
             return;
         }
         console.log(targetDir)
-        shelljs.mkdir(targetDir);
-        shelljs.cp('-R', COMPONENT_TEMPLATE_DIR, targetDir);
         PromptAntd()
     });
 
@@ -63,12 +61,15 @@ function PromptAntd() {
         type: 'checkbox',
         message: '请选择默认Page需要的Antd组件列表:',
         name: 'antdSelections',
+        pageSize: 20,
         choices: antdList
     }];
 
     inquirer.prompt(promptList).then(answers => {
         // console.log(answers); // 返回的结果
         const { antdSelections } = answers;
+        shelljs.mkdir(targetDir);
+        shelljs.cp('-R', COMPONENT_TEMPLATE_DIR, targetDir);
         const antdPageFile = path.resolve(targetDir, COMPONENT_ANTD_PAGE_FILE);
         shelljs.sed('-i', 'ANTD_COMPONENT_LIST', `${antdSelections}`, antdPageFile);
     });

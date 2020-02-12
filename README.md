@@ -1,5 +1,6 @@
 # umi-code-cli
-基于umi+dva开发项目用cli
+
+基于umi+dva+antd开发用code-cli
 
 # 安装
 
@@ -11,7 +12,7 @@
 
 # CLI 指令
 
-- `zumi`：默认指令，根据提示进行初始化项目模块。
+- `zumi`：默认指令，根据提示进行初始化项目模块，备注：请使用者统一默认在项目根目录路径下进行指令操作，**所有文件，文件夹创建的路径统一挂载`src/pages`起始目录下**
 
 ```bash
 e:\WORK\demo>zumi
@@ -19,6 +20,7 @@ e:\WORK\demo>zumi
 > Umi（umi标准page模板）
   Dva（umi+dva标准模板）
   Component（antd标准组件模板）
+  Block（antd标准区块模板）
 
 
 ? 请选择需要创建的模板类型: Umi（umi标准page模板）

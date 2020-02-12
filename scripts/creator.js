@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
 const inquirer = require('inquirer');
 
 // 创建umi标准版page
@@ -9,6 +8,8 @@ const pageCreator = require('./tools/umi');
 const ComponentCreator = require('./tools/components');
 // 创建dva模块
 const DvaCreator = require('./tools/dva');
+// 创建区块模块
+const BlockCreator = require('./tools/block');
 
 const promptList = [{
     type: 'list',
@@ -26,6 +27,10 @@ const promptList = [{
         {
             name: "Component（antd标准组件模板）",
             value: "component"
+        },
+        {
+            name: "Block（基于antd标准区块模板）",
+            value: "block"
         }
     ],
 }];
@@ -40,5 +45,8 @@ inquirer.prompt(promptList).then(answers => {
     }
     if(answers.template === 'component') {
         ComponentCreator();
+    }
+    if(answers.template === 'block') {
+       BlockCreator();
     }
 });

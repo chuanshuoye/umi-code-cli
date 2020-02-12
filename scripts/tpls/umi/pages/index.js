@@ -2,7 +2,7 @@ import { connect } from 'dva';
 import withRouter from 'umi/withRouter';
 import React, { Component } from 'react';
 import { ANTD_COMPONENT_LIST } from 'antd';
-import Demo from '../../components/Demo';
+import Demo from '../components/Demo';
 
 @withRouter
 @connect(state => {

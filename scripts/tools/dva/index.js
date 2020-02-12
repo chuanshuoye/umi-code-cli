@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const inquirer = require('inquirer');
 const shelljs = require('shelljs');
-const antdList = require('../antdList');
 const util = require('../util');
 
 
@@ -34,6 +33,7 @@ function PromptTargetDir() {
         type: 'rawlist',
         message: '请选择Dva创建目录路径:',
         name: 'dvadir',
+        pageSize: 20,
         choices: dvaDirSelections
     },{
         type: 'input',
