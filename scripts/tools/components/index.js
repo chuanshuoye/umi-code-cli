@@ -32,7 +32,7 @@ function PromptTargetDir() {
         type: 'rawlist',
         message: '请选择Component创建目录路径:',
         name: 'componentdir',
-        pageSize: 25,
+        pageSize: 10,
         choices: componentDirSelections
     },{
         type: 'input',
@@ -61,7 +61,7 @@ function PromptAntd() {
         type: 'checkbox',
         message: '请选择默认Page需要的Antd组件列表:',
         name: 'antdSelections',
-        pageSize: 20,
+        pageSize: 10,
         choices: antdList
     }];
 

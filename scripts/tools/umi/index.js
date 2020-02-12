@@ -40,7 +40,7 @@ function PromptTargetDir() {
         message: '请选择Page创建子目录路径:',
         name: 'pagechilddir',
         choices: pageDirSelections,
-        pageSize: 20,
+        pageSize: 10,
         when: answers => answers.isPageChild
     },{
         type: 'input',
@@ -72,7 +72,7 @@ function PromptAntd() {
         type: 'checkbox',
         message: '请选择默认Page需要的Antd组件列表:',
         name: 'antdSelections',
-        pageSize: 20,
+        pageSize: 10,
         choices: antdList
     }];
 

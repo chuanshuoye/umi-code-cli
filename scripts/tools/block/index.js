@@ -19,20 +19,20 @@ function PromptTargetDir() {
     const componentDirSelections = [];
     componentDirs.forEach(i => {
         const regexp = i.replace(/.*\/src\/pages/, '');
-        if (regexp.includes('pages') || regexp.includes('components')) {
-            componentDirSelections.push({
-                key: regexp.split('/')[1][0],
-                name: regexp,
-                value: i
-            })
-        }
+        // 忽略models，services【dva】组件目录
+        if (/\/(models|services)$/.test(regexp)) return;
+        componentDirSelections.push({
+            key: regexp.split('/')[1][0],
+            name: regexp,
+            value: i
+        })
     })
 
     const promptList = [{
         type: 'rawlist',
         message: '请选择Block创建目录路径:',
         name: 'componentdir',
-        pageSize: 25,
+        pageSize: 10,
         choices: componentDirSelections
     }, {
         type: 'input',
@@ -61,7 +61,7 @@ function PromptBlock() {
         type: 'list',
         message: '请选择默认需要的Block区块组件列表:',
         name: 'blockSelection',
-        pageSize: 20,
+        pageSize: 10,
         choices: blockList
     }];
 

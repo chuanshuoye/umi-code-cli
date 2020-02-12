@@ -33,7 +33,7 @@ function PromptTargetDir() {
         type: 'rawlist',
         message: '请选择Dva创建目录路径:',
         name: 'dvadir',
-        pageSize: 20,
+        pageSize: 10,
         choices: dvaDirSelections
     },{
         type: 'input',
