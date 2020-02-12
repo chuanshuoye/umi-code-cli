@@ -1,8 +1,8 @@
 import { connect } from 'dva';
 import withRouter from 'umi/withRouter';
 import React, { Component } from 'react';
-import { Row,Col,Form,Input } from 'antd';
-import Demo from '../../components/Demo';
+import { Row,Col } from 'antd';
+import Demo from '../components/Demo';
 
 @withRouter
 @connect(state => {

@@ -1,8 +1,8 @@
 const path = require('path');
 const inquirer = require('inquirer');
 const shelljs = require('shelljs');
-const antdList = require('../antdList');
 const util = require('../util');
+const promptConfigs = require('../prompt-config');
 
 // 项目当前Page根目录
 const ROOT_PAGE_DIR = `${util.assetDir(['src/pages'])}`;
@@ -24,7 +24,6 @@ function PromptTargetDir() {
     pageDirs.forEach(i => {
         const regexp = i.replace(/.*\/src\/pages/, '');
         pageDirSelections.push({
-            key: regexp.split('/')[1][0],
             name: regexp,
             value: i
         })
@@ -36,11 +35,12 @@ function PromptTargetDir() {
         name: 'isPageChild',
         default: false
     },{
-        type: 'rawlist',
-        message: '请选择Page创建子目录路径:',
+        type: 'autocomplete',
+        message: '请选择Block创建目录路径:',
         name: 'pagechilddir',
-        choices: pageDirSelections,
-        pageSize: 10,
+        source: function (answersSoFar, input) {
+            return util.searchStates(pageDirSelections, input)
+        },
         when: answers => answers.isPageChild
     },{
         type: 'input',
@@ -60,7 +60,6 @@ function PromptTargetDir() {
             PromptTargetDir();
             return;
         }
-        shelljs.cp('-R', UMI_TEMPLATE_DIR, targetDir);
         PromptAntd()
     });
 
@@ -68,17 +67,12 @@ function PromptTargetDir() {
 
 // 勾选Antd组件
 function PromptAntd() {
-    const promptList = [{
-        type: 'checkbox',
-        message: '请选择默认Page需要的Antd组件列表:',
-        name: 'antdSelections',
-        pageSize: 10,
-        choices: antdList
-    }];
+    const promptList = [promptConfigs.antdPromptConfig];
 
     inquirer.prompt(promptList).then(answers => {
         // console.log(answers); // 返回的结果
         const { antdSelections } = answers;
+        shelljs.cp('-R', UMI_TEMPLATE_DIR, targetDir);
         const antdPageFile = path.resolve(targetDir, UMI_ANTD_PAGE_FILE);
         shelljs.sed('-i', 'ANTD_COMPONENT_LIST', `${antdSelections}`, antdPageFile);
     });

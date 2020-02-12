@@ -2,6 +2,9 @@
 
 const inquirer = require('inquirer');
 
+inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
+inquirer.registerPrompt('checkbox-plus', require('inquirer-checkbox-plus-prompt'));
+
 // 创建umi标准版page
 const pageCreator = require('./tools/umi');
 // 创建标准Component

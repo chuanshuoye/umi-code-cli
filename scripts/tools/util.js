@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const glob = require("glob");
+const fuzzy = require('fuzzy');
 
 function assetDir(dir) {
     return path.resolve(process.cwd(), ...dir);
@@ -27,8 +28,41 @@ function findFilesByDir(dir) {
     return fileList;
 }
 
+
+
+function searchStates(states, input) {
+    input = input || '';
+
+    const options = {
+        extract: function (el) { return el.value; }
+    };
+
+    return new Promise(function (resolve) {
+        const fuzzyResult = fuzzy.filter(input, states, options);
+        const matches = fuzzyResult.map(function (el) {
+            return el.original;
+        });
+        resolve(matches);
+    });
+}
+
+function searchKeys(states, input) {
+    input = input || '';
+
+    return new Promise(function (resolve) {
+        const fuzzyResult = fuzzy.filter(input, states);
+        const matches = fuzzyResult.map(function (el) {
+            return el.original;
+        });
+        resolve(matches);
+    });
+}
+
+
 module.exports = {
     assetDir,
     CheckfileExsit,
-    findFilesByDir
+    findFilesByDir,
+    searchStates,
+    searchKeys
 }

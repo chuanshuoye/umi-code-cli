@@ -4,7 +4,6 @@ const shelljs = require('shelljs');
 const blockList = require('./blockList');
 const util = require('../util');
 
-
 const BLOCK_REGEXP = `${util.assetDir(['src/pages/**/!(*.js|*.less|*.scss|*.css)'])}`;
 const BLOCK_TEMPLATE_DIR = `${path.resolve(__dirname, '../../blocks/')}`;
 
@@ -15,35 +14,36 @@ let targetDir = '';
 // 创建目录
 function PromptTargetDir() {
 
-    const componentDirs = util.findFilesByDir(BLOCK_REGEXP);
-    const componentDirSelections = [];
-    componentDirs.forEach(i => {
+    const blockDirs = util.findFilesByDir(BLOCK_REGEXP);
+    const blockDirSelections = [];
+    blockDirs.forEach(i => {
         const regexp = i.replace(/.*\/src\/pages/, '');
         // 忽略models，services【dva】组件目录
         if (/\/(models|services)$/.test(regexp)) return;
-        componentDirSelections.push({
-            key: regexp.split('/')[1][0],
+        blockDirSelections.push({
             name: regexp,
             value: i
         })
     })
 
     const promptList = [{
-        type: 'rawlist',
+        type: 'autocomplete',
         message: '请选择Block创建目录路径:',
-        name: 'componentdir',
-        pageSize: 10,
-        choices: componentDirSelections
+        name: 'blockdir',
+        source: function (answersSoFar, input) {
+            return util.searchStates(blockDirSelections, input)
+        }
     }, {
         type: 'input',
         message: '请输入Block名称:',
-        name: 'componentName',
+        name: 'blockName',
         default: 'Demo'
     }];
 
     inquirer.prompt(promptList).then(answers => {
-        targetDir = util.assetDir([answers.componentdir]);
-        targetDir = path.join(targetDir, answers.componentName);
+        console.log(answers)
+        targetDir = util.assetDir([answers.blockdir]);
+        targetDir = path.join(targetDir, answers.blockName);
         if (util.CheckfileExsit(targetDir)) {
             console.error('该Block已经存在，请重新输入名称')
             PromptTargetDir();

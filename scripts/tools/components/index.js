@@ -1,8 +1,8 @@
 const path = require('path');
 const inquirer = require('inquirer');
 const shelljs = require('shelljs');
-const antdList = require('../antdList');
 const util = require('../util');
+const promptConfigs = require('../prompt-config');
 
 
 const COMPONENT_REGEXP = `${util.assetDir(['src/pages/**/components/'])}`;
@@ -22,19 +22,19 @@ function PromptTargetDir() {
     componentDirs.forEach(i => {
         const regexp = i.replace(/.*\/src\/pages/, '');
         componentDirSelections.push({
-            key: regexp.split('/')[1][0],
             name: regexp,
             value: i
         })
     })
 
     const promptList = [{
-        type: 'rawlist',
+        type: 'autocomplete',
         message: '请选择Component创建目录路径:',
         name: 'componentdir',
-        pageSize: 10,
-        choices: componentDirSelections
-    },{
+        source: function (answersSoFar, input) {
+            return util.searchStates(componentDirSelections, input)
+        }
+    }, {
         type: 'input',
         message: '请输入Component名称:',
         name: 'componentName',
@@ -57,13 +57,7 @@ function PromptTargetDir() {
 
 // 勾选Antd组件
 function PromptAntd() {
-    const promptList = [{
-        type: 'checkbox',
-        message: '请选择默认Page需要的Antd组件列表:',
-        name: 'antdSelections',
-        pageSize: 10,
-        choices: antdList
-    }];
+    const promptList = [promptConfigs.antdPromptConfig];
 
     inquirer.prompt(promptList).then(answers => {
         // console.log(answers); // 返回的结果

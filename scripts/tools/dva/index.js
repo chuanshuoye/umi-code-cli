@@ -5,7 +5,7 @@ const shelljs = require('shelljs');
 const util = require('../util');
 
 
-const DVA_REGEXP = `${util.assetDir(['src/pages/**/pages/*'])}`;
+const DVA_REGEXP = `${util.assetDir(['src/pages/**/pages/!(*.js|*.less|*.scss|*.css)'])}`;
 
 const DVA_TEMPLATE_DIR = `${path.resolve(__dirname, '../../tpls/dva/*')}`;
 const DVA_MODEL_DIR = 'models';
@@ -23,18 +23,18 @@ function PromptTargetDir() {
     dvaDirs.forEach(i => {
         const regexp = i.replace(/.*\/src\/pages/, '');
         dvaDirSelections.push({
-            key: regexp.split('/')[1][0],
             name: regexp,
             value: i
         })
     })
 
     const promptList = [{
-        type: 'rawlist',
+        type: 'autocomplete',
         message: '请选择Dva创建目录路径:',
         name: 'dvadir',
-        pageSize: 10,
-        choices: dvaDirSelections
+        source: function (answersSoFar, input) {
+            return util.searchStates(dvaDirSelections, input)
+        }
     },{
         type: 'input',
         message: '请输入Dva Model名称:',
