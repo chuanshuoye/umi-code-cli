@@ -10,6 +10,51 @@
   npm install umi-code-cli -g
 ```
 
+# umi+dva规范目录结构
+
+```bash
+src
+  └─pages
+    └─test
+        │  index.js
+        │
+        ├─components
+        │  └─Demo
+        │          index.js
+        │          index.less
+        │
+        ├─models
+        │      demoModel.js
+        │
+        ├─pages
+        │  │  index.js
+        │  │  index.less
+        │  │
+        │  └─demo
+        │      │  index.js
+        │      │
+        │      ├─components
+        │      │  └─Demo
+        │      │          index.js
+        │      │          index.less
+        │      │
+        │      ├─models
+        │      │      demoModel.js
+        │      │
+        │      ├─pages
+        │      │      index.js
+        │      │      index.less
+        │      │
+        │      └─services
+        │              const.js
+        │              index.js
+        │
+        └─services
+                const.js
+                index.js
+
+```
+
 # CLI 指令
 
 - `zumi`：默认指令，根据提示进行初始化项目模块，备注：请使用者统一默认在项目根目录路径下进行指令操作，**所有文件，文件夹创建的路径统一挂载`src/pages`起始目录下**
