@@ -1,22 +1,20 @@
 const queryString = require('query-string');
-import request from '@/../utils/request';
-import { root } from '@/../utils/proxyTable';
-import { API } from './const';
+import request from '@/utils/request';
 
 export function postTest(obj) {
-    return request(`${root}${API.demoAPI.now}`, {
-        method: 'POST',
-        body: JSON.stringify(obj)
-    });
+  return request(`/api/dvatest`, {
+    method: 'POST',
+    body: JSON.stringify(obj)
+  });
 }
 
 export function getTest(payload) {
-    const query = queryString({
-        id: payload.id,
-        name: payload.name
-    });
-    return request(`${root}${API.demoAPI.now}?${query}`, {
-        method: 'GET',
-        body: null
-    });
+  const query = queryString({
+    id: payload.id,
+    name: payload.name
+  });
+  return request(`/api/dvatest?${query}`, {
+    method: 'GET',
+    body: null
+  });
 }

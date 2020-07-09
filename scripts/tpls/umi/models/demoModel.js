@@ -5,14 +5,14 @@ export default {
   state: {
   },
   reducers: {
-    updateStore(state, {payload: {data}}) {
-      return {...state, saveInfo: data.value}
+    updateStore(state, { payload: { data } }) {
+      return { ...state, saveInfo: data.value }
     },
   },
   effects: {
-    async getSaveInfo ({payload: {...params}}, {call, put}) {
-      const {data} = await call(service.getTest, {...params})
-      await put({
+    *getSaveInfo({ payload: { ...params } }, { call, put }) {
+      const { data } = yield call(service.getTest, { ...params })
+      yield put({
         type: 'updateStore',
         payload: {
           data: data

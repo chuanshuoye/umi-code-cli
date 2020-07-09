@@ -7,8 +7,8 @@ class Demo extends Component {
     super(props);
     this.state = {}
   }
-  
-  render () {
+
+  render() {
     return (
       <div className={style.header}>
       </div>

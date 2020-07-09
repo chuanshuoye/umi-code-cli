@@ -1,42 +1,42 @@
 import { connect } from 'dva';
 import withRouter from 'umi/withRouter';
 import React, { Component } from 'react';
-import { Row,Col } from 'antd';
+import { Row, Col } from 'antd';
 import Demo from '../components/Demo';
 
 @withRouter
 @connect(state => {
-    return {
-        ...state.demoModel,
-    };
+  return {
+    ...state.demoModel,
+  };
 })
 class Index extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    componentWillMount() {
+  componentWillMount() {
 
-    }
+  }
 
-    async componentDidMount() {
-        const { dispatch } = this.props;
-        const result = await dispatch({
-            type: 'demoModel/getSaveInfo',
-            payload: {}
-        });
-    }
+  async componentDidMount() {
+    const { dispatch } = this.props;
+    const result = await dispatch({
+      type: 'demoModel/getSaveInfo',
+      payload: {}
+    });
+  }
 
-    componentWillUnmount() {
+  componentWillUnmount() {
 
-    }
+  }
 
-    render() {
-        return (
-            <Demo />
-        )
-    }
+  render() {
+    return (
+      <Demo />
+    )
+  }
 
 }
 

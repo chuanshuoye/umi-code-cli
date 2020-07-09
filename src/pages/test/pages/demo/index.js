@@ -1,7 +1,7 @@
-import PageIndex from './pages/pageOne';
+import PageIndex from './pages';
 
 export default () => {
-    return (
-        <PageIndex />
-    );
+  return (
+    <PageIndex />
+  );
 };

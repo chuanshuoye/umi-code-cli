@@ -6,8 +6,8 @@ class Demo extends React.Component {
     super(props);
     this.state = {}
   }
-  
-  render () {
+
+  render() {
     return (
       <div className={style.header}>
       </div>

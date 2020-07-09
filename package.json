@@ -1,6 +1,6 @@
 {
   "name": "umi-code-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "umi coding helper cli",
   "main": "index.js",
   "bin": {
